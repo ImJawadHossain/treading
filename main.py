@@ -15,12 +15,12 @@ import pickle
 
 # from tensorflow import kerasz
 
-from googlesheet.connection import Connection
+# from googlesheet.connection import Connection
 
 warnings.filterwarnings('ignore')
 from database.dataframe import GetDataframe
 
-ws = Connection().connect_worksheet("tracker")
+# ws = Connection().connect_worksheet("tracker")
 
 def feature(symbol):
     df = GetDataframe().get_minute_data(symbol, 1, 8)
@@ -87,7 +87,7 @@ def feature(symbol):
     # print(df)
 
     body = [str(datetime.now()), int(patterns["Sum"][-2])]  # the values should be a list
-    ws.append_row(body, table_range="D1")
+    # ws.append_row(body, table_range="D1")
 
     return df
 
@@ -135,7 +135,7 @@ while True:
             predictions = np.array([targets[np.abs(targets - val).argmin()] for val in predictions])
             print(predictions[0])
             body = [str(datetime.now()), int(predictions[0])]  # the values should be a list
-            ws.append_row(body, table_range="A1")
+            # ws.append_row(body, table_range="A1")
 
             if predictions[0] >= 500:
                 print("The Bullish sound")
